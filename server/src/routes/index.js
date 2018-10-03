@@ -1,5 +1,7 @@
 import Router from 'express';
 
+import NubankModel from '../models/nubank';
+
 const router = new Router();
 
 /* enable CORS preflight */
@@ -8,7 +10,7 @@ router.options('/login');
 /**
  * Route /login
  */
-router.post('/login', (request, response) => {
+router.post('/login', async (request, response) => {
   const requestData = request.body;
   const responseData = {
     success: true,
@@ -23,8 +25,19 @@ router.post('/login', (request, response) => {
     responseData.message = 'Invalid password!';
     responseData.success = false;
   }
-  // responseData.data = requestData;
-  response.status(200).json(responseData);
+
+  responseData.data = await NubankModel(requestData)
+    .then((value) => {
+      responseData.success = true;
+      responseData.message = value.message;
+      return value.data;
+    })
+    .catch((error) => {
+      responseData.success = false;
+      responseData.message = error.message;
+    });
+
+  await response.status(200).json(responseData);
 });
 
 export default router;
