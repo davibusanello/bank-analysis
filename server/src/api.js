@@ -1,7 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
 import router from './routes';
+
+/* Load envs */
+dotenv.load();
 
 const api = express();
 const apiVersion = '/v1';

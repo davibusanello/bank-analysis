@@ -26,9 +26,12 @@
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "mime": "^2.3.1",
     "morgan": "^1.9.1",
-    "puppeteer": "^1.8.0"
+    "puppeteer": "^1.8.0",
+    "regenerator-runtime": "^0.12.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
