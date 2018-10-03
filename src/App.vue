@@ -1,14 +1,17 @@
 <template>
   <div id="app">
+    <h1 class='title'>Bank Data Analysis</h1>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
     </div>
     <router-view/>
   </div>
 </template>
 
 <style>
+body {
+  background-color: rgb(173, 173, 173);
+
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -27,5 +30,9 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.title {
+  color: #fff;
+  font-size: 36px;
 }
 </style>
