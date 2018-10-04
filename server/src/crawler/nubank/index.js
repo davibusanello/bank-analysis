@@ -28,6 +28,43 @@ function storeData(data, filePrefix) {
 }
 
 /**
+ * Get previous stored Data
+ * @param {String} filePrefix
+ * @returns {JSON}
+ * @throws {Error}
+ */
+function getStoredData(filePrefix) {
+  try {
+    return JSON.parse(fs.readFileSync(`${storagePath}/${filePrefix}.json`));
+  } catch (error) {
+    throw new Error(`Error on getting stored ${filePrefix}`);
+  }
+}
+
+/**
+ * Get previous collected data and return
+ * @param {String} username
+ * @returns {Object} {success, message, data}
+ * @throws {Error}
+ */
+function giveStored(username) {
+  try {
+    const parsedData = {
+      feedData: getStoredData(`${username}_feed`),
+      categories: getStoredData(`${username}_categories`),
+      tags: getStoredData(`${username}_tags`),
+    };
+    return {
+      success: true,
+      data: parsedData,
+      message: 'Information from your Nubank Account was from the previous collection.',
+    };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+/**
  * Control the flow of collect Nubank Account data
  * @param {String} url
  * @param {String} username
@@ -44,6 +81,11 @@ export default async function getInformation(url, username, password) {
     }
     if (typeof password !== 'string') {
       throw new TypeError('Password should be string!');
+    }
+
+    /* If Env USE_STORED_DATA is true to use already stored information */
+    if (process.env.USE_STORED_DATA) {
+      return giveStored(username);
     }
 
     /**
