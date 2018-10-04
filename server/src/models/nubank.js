@@ -1,6 +1,12 @@
+import dotenv from 'dotenv';
+import path from 'path';
 import crawler from '../crawler/nubank';
 
-const NUBANK_URL = 'https://app.nubank.com.br';
+/* Load envs */
+dotenv.load();
+
+const NUBANK_URL = process.env.NUBANK_URL || 'https://app.nubank.com.br';
+
 
 /**
  * Method to handle the process of collect the information from Nubank Web App
