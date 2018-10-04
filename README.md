@@ -192,6 +192,8 @@ yarn run test:e2e
 
 ## Roadmap
 
+- Handling Authentication Error on Nubank
+
 - Display the information
 
 - Parser the User personal information
