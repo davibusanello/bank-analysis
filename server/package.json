@@ -5,7 +5,7 @@
   "main": "./src/api.js",
   "scripts": {
     "serve": "nodemon ./dist/api.js",
-    "serve:dev": "nodemon --exec babel-node ./src/api.js",
+    "serve:dev": "nodemon --ignore 'storage/*' --exec babel-node ./src/api.js",
     "lint": "./node_modules/.bin/eslint src/**/*.js",
     "lint:fix": "npm run lint -- --fix",
     "build": "npm run lint && babel src --out-dir dist"
