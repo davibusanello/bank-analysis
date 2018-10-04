@@ -18,17 +18,26 @@
       </div>
     <span class="message" v-if="message" v-html="message"></span>
 
+    <div v-if="api.loaded" class="charts">
+      <span class="title">Categories</span>
+      <bar-chart  :data=this.api.data.categories></bar-chart>
+    </div>
+
   </div>
 </template>
 
 <script>
+
+import BarChart from './Charts/CategoriesChart.vue';
+
 export default {
   name: 'Login',
+  components: { BarChart },
   data: () => ({
     username: null,
     password: null,
     message: null,
-    api: {},
+    api: { loaded: false },
   }),
   methods: {
     /** Handle the authentication request */
@@ -46,9 +55,10 @@ export default {
         username: this.username,
         password: this.password,
       };
-      const apiResponse = await axios.post('/login', dataPost);
+      const apiResponse = await this.axios.post('/login', dataPost);
 
-      this.api = await apiResponse.data;
+      this.api.data = await apiResponse.data.data;
+      this.api.loaded = await true;
       this.message = await apiResponse.data.message;
     },
   },
