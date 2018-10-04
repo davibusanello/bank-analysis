@@ -9,6 +9,8 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"
   },
+  "author": "Davi Busanello <itsme@davibusanello.net>",
+  "license": "MIT",
   "dependencies": {
     "chart.js": "^2.7.2",
     "vue": "^2.5.17",
