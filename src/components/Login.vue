@@ -23,7 +23,12 @@
 
     <div v-if="api.loaded" class="charts">
       <span class="title">Categories</span>
-      <bar-chart  :data=this.api.data.categories></bar-chart>
+      <bar-chart :data=this.api.data.categories></bar-chart>
+    </div>
+
+    <div id="timeline" v-if="api.loaded">
+      <span class="title">Transactions Timeline</span>
+      <transactions-timeline :transactions=this.api.data.feedData></transactions-timeline>
     </div>
 
   </div>
@@ -32,10 +37,11 @@
 <script>
 
 import BarChart from './Charts/CategoriesChart.vue';
+import TransactionsTimeline from './TransactionsTimeline.vue';
 
 export default {
   name: 'Login',
-  components: { BarChart },
+  components: { BarChart, TransactionsTimeline },
   data: () => ({
     username: null,
     password: null,
