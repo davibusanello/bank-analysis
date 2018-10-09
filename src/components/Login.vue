@@ -16,7 +16,10 @@
           placeholder="password">
         <button @click="authenticate()">Consultar</button>
       </div>
-    <span class="message" v-if="message" v-html="message"></span>
+    <span class="message" v-if="message">
+      {{ message }}
+      <span @click="message = false" style="color: grey; cursor:pointer;">x</span>
+    </span>
 
     <div v-if="api.loaded" class="charts">
       <span class="title">Categories</span>
